@@ -106,6 +106,18 @@ const postArticle = (data) => {
   });
 };
 
+const updateArticle = ({data, id}) => {
+  return new Promise((resolve, reject) => {
+    connection.query("UPDATE article SET ? WHERE id = ?", [data, id], (error, result) => {
+      if (!error) {
+        resolve(result);
+      } else {
+        reject(error);
+      }
+    });
+  });
+};
+
 
 module.exports = {
     countArticles,
@@ -115,5 +127,6 @@ module.exports = {
     updateStatus,
     likeArticle,
     postArticle,
-    dislikeArticle
+    dislikeArticle,
+    updateArticle
 }

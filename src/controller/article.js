@@ -131,7 +131,29 @@ const postArticle = async (req, res, next) => {
       next(errorRes);
     }
   };
-    
+
+  const updateArticle = async (req, res, next) => {
+    try {
+      const { pic, title, cat_name, content } = req.body;
+      const id = req.params.id
+      const fileName = req.file.filename; // `${req.get("host")} kalo mau dinamis
+      const data = {
+        user_id,
+        title, 
+        cat_name, 
+        content,
+        pic: `http://localhost:5000/file/${fileName}`
+      };
+        const result = await modelArticles.updateArticle({data, id});
+        commonHelper.reponse(res, result, 200);
+    } catch (error) {
+      const errorRes = new Error("Internal Server Error");
+      errorRes.status = 500;
+      console.log(error);
+      next(errorRes);
+    }
+  };
+
 module.exports = {
     getArticles,
     getArticlesByCat,
@@ -139,5 +161,6 @@ module.exports = {
     updateStatus,
     likeArticle,
     postArticle,
-    dislikeArticle
+    dislikeArticle,
+    updateArticle
 }
