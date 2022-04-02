@@ -138,7 +138,6 @@ const postArticle = async (req, res, next) => {
       const id = req.params.id
       const fileName = req.file.filename; // `${req.get("host")} kalo mau dinamis
       const data = {
-        user_id,
         title, 
         cat_name, 
         content,

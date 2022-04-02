@@ -13,7 +13,7 @@ route
     .put("/detail/:id", articleController.updateStatus)
     .put("/like/:id", articleController.likeArticle)
     .put("/dislike/:id", articleController.dislikeArticle)
-    .put("/:id", articleController.updateArticle)
+    .put("/:id", upload.single("pic"), articleController.updateArticle)
     .post("/", upload.single("pic"), midware.midArticle, articleController.postArticle)
 
 module.exports = route;
