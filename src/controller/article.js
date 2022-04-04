@@ -141,7 +141,7 @@ const postArticle = async (req, res, next) => {
         title, 
         cat_name, 
         content,
-        pic: `${process.env.HOST}/file/${fileName}`
+        pic: `http://localhost:5000/file/${fileName}`
       };
         const result = await modelArticles.updateArticle({data, id});
         commonHelper.reponse(res, result, 200);
