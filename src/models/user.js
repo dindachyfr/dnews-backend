@@ -63,10 +63,10 @@ const getUserByID = (id) => {
 const updateRole = (id, data) => {
   return new Promise((resolve, reject) => {
     connection.query("UPDATE user SET ? WHERE id = ?", [data, id], (error, result) => {
-      if (!error) {
-        resolve(result);
-      } else {
+      if (error) {
         reject(error);
+      } else {
+        resolve(result);
       }
     });
   });
